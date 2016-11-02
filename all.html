@@ -1,0 +1,60 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div id="all">
+  </div>
+
+  <script>
+    function init() {
+      var menus = {
+        // home: "HOME",
+        // dungeon_item: "던전일람",
+        system: "시스템",
+        battle: "배틀",
+        dungeon: "던젼",
+        item: "아이템",
+        weapon: "무기",
+        armor: "방어구",
+        accessary: "장식품",
+        material: "재료",
+        processunit: "프로서스 유닛",
+        neptune: "넵튠",
+        noire: "느와르",
+        vert: "벨",
+        blanc: "블랑",
+        nepgear: "네프기어",
+        uni: "유니",
+        rom: "롬",
+        ram: "람",
+        maker: "메이커",
+        dlc1: "dlc1",
+        dlc2: "dlc2",
+      };
+
+      $.each(menus, function(key, value){
+        $(".nav-tabs").append('<li><a href="#' + key + '" role="tab" data-toggle="tab">' + value + '</a></li>');
+      });
+
+      $.each(menus, function(key, value){
+        $("#all").append('<div class="" id="' + key + '">' + "Loading..." + '</div>');
+        $.ajax({
+          url: key + '.html',
+          context: document.body
+        }).done(function(data) {
+          $("#all #" + key).html(data);
+        });
+      });
+
+    }
+
+    init();
+  </script>
+
+</body>
+</html>
